@@ -1,5 +1,6 @@
 package hexlet.code;
 
+import hexlet.code.schemas.BaseSchema;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -100,7 +101,7 @@ public class ValidatorTest {
         assertThat(schema.isValid(data)).isTrue();
 
         int expectedSize = 2;
-        schema.sizeOf(expectedSize);
+        schema.sizeof(expectedSize);
 
         assertThat(schema.isValid(data)).isFalse();
         data.put("key1", "value2");
