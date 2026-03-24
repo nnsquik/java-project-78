@@ -3,6 +3,7 @@ package hexlet.code;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -106,5 +107,32 @@ public class ValidatorTest {
         assertThat(schema.isValid(data)).isFalse();
         data.put("key2", "value2");
         assertThat(schema.isValid(data)).isTrue();
+    }
+
+    @Test
+    public void testMapShape() {
+        var v = new Validator();
+        var schema = v.map();
+
+        Map<String, BaseSchema<?>> schemas = new HashMap<>();
+        schemas.put("firstName", v.string().required());
+        schemas.put("lastName", v.string().required().minLength(2));
+        schema.shape(schemas);
+
+        // оба поля заполнены
+        Map<String, String> person1 = new HashMap<>();
+        person1.put("firstName", "John");
+        person1.put("lastName", "Smith");
+        assertThat(schema.isValid(person1)).isTrue();
+
+        Map<String, String> person2 = new HashMap<>();
+        person2.put("firstName", "John");
+        person2.put("lastName", null);
+        assertThat(schema.isValid(person2)).isFalse();
+
+        Map<String, String> person3 = new HashMap<>();
+        person3.put("firstName", "Ivan");
+        person3.put("lastName", "I");
+        assertThat(schema.isValid(person3)).isFalse();
     }
 }

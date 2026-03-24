@@ -7,6 +7,11 @@ import java.util.function.Predicate;
 public final class StringSchema extends BaseSchema<String> {
     private Predicate<String> minLengthCheck = null;
 
+    public StringSchema required() {
+        super.required();
+        return this;
+    }
+
     @Override
     public boolean isEmpty(String value) {
         return value.isEmpty();
