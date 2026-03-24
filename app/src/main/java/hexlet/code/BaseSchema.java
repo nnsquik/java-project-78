@@ -10,7 +10,11 @@ public abstract class BaseSchema<T> {
 
     protected abstract boolean isEmpty(T value);
 
-    public final BaseSchema<T> required() {
+    /**
+     * Makes the value required.
+     * @return current schema instance.
+     */
+    public BaseSchema<T> required() {
         this.required = true;
         return this;
     }

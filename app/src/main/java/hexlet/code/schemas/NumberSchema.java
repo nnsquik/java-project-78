@@ -3,9 +3,13 @@ package hexlet.code.schemas;
 import hexlet.code.BaseSchema;
 
 public final class NumberSchema extends BaseSchema<Integer> {
-
     public NumberSchema positive() {
         getChecks().add(value -> value > 0);
+        return this;
+    }
+
+    public NumberSchema required() {
+        super.required();
         return this;
     }
 
