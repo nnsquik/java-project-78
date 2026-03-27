@@ -1,7 +1,6 @@
 plugins {
     id("java")
     id("org.sonarqube") version "7.2.3.7755"
-    application
     checkstyle
 }
 
@@ -15,7 +14,7 @@ repositories {
 dependencies {
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
-    testImplementation("org.assertj:assertj-core:3.6.1")
+    testImplementation("org.assertj:assertj-core:3.27.7")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 

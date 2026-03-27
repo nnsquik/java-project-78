@@ -1,11 +1,8 @@
 package hexlet.code.schemas;
 
 import java.util.Map;
-import java.util.function.Predicate;
 
 public final class MapSchema extends BaseSchema<Map<?, ?>> {
-    private Predicate<Map<?, ?>> sizeOfCheck = null;
-
     public MapSchema required() {
         super.required();
         return this;
@@ -17,11 +14,7 @@ public final class MapSchema extends BaseSchema<Map<?, ?>> {
     }
 
     public MapSchema sizeof(int size) {
-        if (sizeOfCheck != null) {
-            getChecks().remove(sizeOfCheck);
-        }
-        sizeOfCheck = value -> value.size() == size;
-        getChecks().add(sizeOfCheck);
+        getChecks().add(value -> value.size() == size);
         return this;
     }
 
